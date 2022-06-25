@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Full-Stack\\Visual studio 2022\\Projects\\eTickets\\eTickets\\eTickets.csproj",
         "projectName": "eTickets",
         "projectPath": "D:\\Full-Stack\\Visual studio 2022\\Projects\\eTickets\\eTickets\\eTickets.csproj",
-        "packagesPath": "C:\\Users\\GS SHOP\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\chiko\\.nuget\\packages\\",
         "outputPath": "D:\\Full-Stack\\Visual studio 2022\\Projects\\eTickets\\eTickets\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GS SHOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\chiko\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,6 +1,7 @@
 ﻿using eTickets.Data.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 
 namespace eTickets.Data.Base
 {
@@ -24,7 +25,6 @@ namespace eTickets.Data.Base
             await _context.SaveChangesAsync();
 
         }
-
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var result = await _context.Set<T>().ToListAsync();
@@ -36,6 +36,14 @@ namespace eTickets.Data.Base
             var result = await _context.Set<T>().FirstOrDefaultAsync(i => i.Id == id);
             return result;
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] expressions)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            query = expressions.Aggregate(query, (current, expressions) => current.Include(expressions));
+            return await query.ToListAsync();
+        }
+
         public async Task UpdateAsync(int id, T entity)
         {
             EntityEntry entityEntry = _context.Entry<T>(entity);
