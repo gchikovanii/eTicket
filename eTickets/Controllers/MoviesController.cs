@@ -22,6 +22,7 @@ namespace eTickets.Controllers
         }
 
 
+
         public async Task<IActionResult> Filter(string searchString)
         {
             var allMovies = await _moviesService.GetAllAsync(i => i.Cinema);

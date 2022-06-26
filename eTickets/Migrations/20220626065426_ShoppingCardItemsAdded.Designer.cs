@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTickets.Data.DataContext;
 
@@ -11,9 +12,10 @@ using eTickets.Data.DataContext;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220626065426_ShoppingCardItemsAdded")]
+    partial class ShoppingCardItemsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,7 +214,7 @@ namespace eTickets.Migrations
                     b.ToTable("Producers");
                 });
 
-            modelBuilder.Entity("eTickets.Models.ShoppingCartItem", b =>
+            modelBuilder.Entity("eTickets.Models.ShoppingCardItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -234,7 +236,7 @@ namespace eTickets.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.ToTable("ShoppingCardItems");
                 });
 
             modelBuilder.Entity("eTickets.Models.Actor_Movie", b =>
@@ -294,7 +296,7 @@ namespace eTickets.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("eTickets.Models.ShoppingCartItem", b =>
+            modelBuilder.Entity("eTickets.Models.ShoppingCardItem", b =>
                 {
                     b.HasOne("eTickets.Models.Movie", "Movie")
                         .WithMany()
