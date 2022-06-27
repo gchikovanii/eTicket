@@ -1,13 +1,16 @@
 ﻿using eTickets.Data.DataContext;
 using eTickets.Data.Services.Abstraction;
 using eTickets.Data.Services.Implementation;
+using eTickets.Data.Static;
 using eTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
         private readonly IMoviesService _moviesService;
@@ -15,27 +18,27 @@ namespace eTickets.Controllers
         {
             _moviesService = moviesService;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allMovies = await _moviesService.GetAllAsync(i => i.Cinema);
             return View(allMovies);
         }
-
-
-
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allMovies = await _moviesService.GetAllAsync(i => i.Cinema);
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResult = allMovies.Where(i => i.Name.Contains(searchString) || i.Description.Contains(searchString))
+                var filteredResult = allMovies.Where(i => i.Name.ToLower().Contains(searchString.ToLower()) 
+                || i.Description.ToLower().Contains(searchString.ToLower()))
                     .ToList();
                 return View("Index", filteredResult);
             }
             
             return View("Index",allMovies);
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var movieDetail = await _moviesService.GetMovieByIdAsync(id);

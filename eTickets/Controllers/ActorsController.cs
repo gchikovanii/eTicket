@@ -1,11 +1,14 @@
 ﻿using eTickets.Data.DataContext;
 using eTickets.Data.Services.Abstraction;
+using eTickets.Data.Static;
 using eTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
         private readonly IActorsService _actorService;
@@ -14,6 +17,7 @@ namespace eTickets.Controllers
         {
             _actorService = actorService;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _actorService.GetAllAsync();
@@ -25,7 +29,9 @@ namespace eTickets.Controllers
             return View();
         }
 
-        //Add
+
+        [AllowAnonymous]
+
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = await _actorService.GetByIdAsync(id);
@@ -35,7 +41,7 @@ namespace eTickets.Controllers
             }
             return View(actorDetails);
         }
-
+        //Add
         [HttpPost]
         public async Task<IActionResult> Create([Bind("ProfilePictureUrl,FullName,Bio")]Actor actor)
         {

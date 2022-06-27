@@ -15,7 +15,11 @@
                     <th>Order ID</th>
                     <th>Items</th>
                     <th>Total</th>
-                    <th>User</th>
+                    @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                         <th>User</th>
+                    }
+                   
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +45,10 @@
                         <td class="align-middle">
                             @order.OrderItems.Select(i => i.Movie.Price * i.Amount).Sum().ToString("c");
                         </td>
-                        <td class="align-middle">N/A</td>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle">@order.User.FullName</td>    
+                        }
                     </tr>
                 }
             </tbody>

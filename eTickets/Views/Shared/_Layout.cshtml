@@ -23,8 +23,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index"><i class="bi bi-film"></i> Movies</a>
                         </li>
-                       
-                            <li class="nav-item dropdown">
+
+                         @if(User.Identity.IsAuthenticated && User.IsInRole("Admin")){
+                              <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="bi bi-gear"></i> Management
                                 </a>
@@ -35,31 +36,17 @@
                                     <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Actors</a>
                                 </div>
                             </li>
+                         }
+                           
                     </ul>
                     <form class="d-inline-flex m-1" my-2 my-lg-0" asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
                         <input  name="searchString" type="text" class="form-control" placeholder="Search for a movie..." aria-label="Recipient's username">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                     </form>
-
                     <ul class="navbar-nav" style="margin-left:5px;">
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
-
-                    @*User Profile Section*@
-                    <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-bs-toggle="dropdown" aria-expanded="false"> 
-                            <i class="bi bi-person-badge"></i> Hello User
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="profile-btn">
-                            <li>
-                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                                    <i class="bi bi-list"></i>Orders
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
+                   <partial name="_Identity.cshtml" />
                 </div>
             </div>
         </nav>
