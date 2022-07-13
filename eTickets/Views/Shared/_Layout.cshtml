@@ -36,14 +36,13 @@
                                     <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Actors</a>
                                 </div>
                             </li>
-                         }
-                           
+                         }      
                     </ul>
                     <form class="d-inline-flex m-1" my-2 my-lg-0" asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
                         <input  name="searchString" type="text" class="form-control" placeholder="Search for a movie..." aria-label="Recipient's username">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                     </form>
-                    <ul class="navbar-nav" style="margin-left:5px;">
+                    <ul class="navbar-nav" style="margin-left:5px">
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
                    <partial name="_Identity.cshtml" />
@@ -59,7 +58,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - All rights reserved by <a>chikoprojcets.ge</a>
+            &copy; 2022 - All rights reserved by <a href="https://www.chikoprojcets.ge/" target="_blank">chikoprojcets.ge</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

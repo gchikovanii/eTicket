@@ -334,7 +334,7 @@ namespace eTickets.Data.DataContext
                         Email = adminUserEmail,
                         EmailConfirmed = true
                     };
-                    await userManager.CreateAsync(newAdminUser,"Admin@6969");
+                    await userManager.CreateAsync(newAdminUser,"Admin@6969!");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
